@@ -2,7 +2,7 @@ const container = document.querySelector(".container")
 
 function gridCreation (boxcount=16){
     const boxDimensions = 960/boxcount;
-    container.innerHTML = "";
+    container.replaceChildren();
     for (let b=0; b< boxcount; b++){
         for (let i=0;i<boxcount;i++) {
             const gridBox = document.createElement('div');
