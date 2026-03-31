@@ -1,5 +1,11 @@
 const container = document.querySelector(".container")
 
+function randomHue() {
+    const hue = Math.floor(Math.random()*360); // generate a random value for hue 0 - 360
+    const color = `hsl(${hue},100%,50%)`;
+    return color
+}
+
 function gridCreation (boxcount=16){
     const boxDimensions = 960/boxcount;
     container.replaceChildren();
@@ -7,8 +13,8 @@ function gridCreation (boxcount=16){
         for (let i=0;i<boxcount;i++) {
             const gridBox = document.createElement('div');
             gridBox.setAttribute("style", `width:${boxDimensions}px; height:${boxDimensions}px; border:1px solid black; boxSizing:border-box;`);
-            gridBox.addEventListener('mouseover', () => gridBox.classList.add('hovered'));
-            gridBox.addEventListener('mouseout',() => gridBox.classList.add('trail'));
+            gridBox.addEventListener('mouseover', () => gridBox.style.backgroundColor= randomHue);
+            gridBox.addEventListener('mouseout',() => gridBox.style.backgroundColor= randomHue());
             container.appendChild(gridBox);
         };
     };
