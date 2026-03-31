@@ -6,6 +6,15 @@ function randomHue() {
     return color
 }
 
+function addOpacity(opacity) {
+    let opacityValue = parseFloat(opacity);
+    if (opacityValue == 1.0){
+        return opacityValue
+    } else {
+        return opacityValue = opacityValue + 0.1;
+    }
+}
+
 function gridCreation (boxcount=16){
     const boxDimensions = 960/boxcount;
     container.replaceChildren();
@@ -13,8 +22,11 @@ function gridCreation (boxcount=16){
         for (let i=0;i<boxcount;i++) {
             const gridBox = document.createElement('div');
             gridBox.setAttribute("style", `width:${boxDimensions}px; height:${boxDimensions}px; border:1px solid black; boxSizing:border-box;`);
+            gridBox.style.opacity = 0.1;
             gridBox.addEventListener('mouseover', () => gridBox.style.backgroundColor= randomHue);
-            gridBox.addEventListener('mouseout',() => gridBox.style.backgroundColor= randomHue());
+            gridBox.addEventListener('mouseout',() => {gridBox.style.backgroundColor= randomHue();
+                gridBox.style.opacity = addOpacity(gridBox.style.opacity);
+            });
             container.appendChild(gridBox);
         };
     };
